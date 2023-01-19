@@ -1,5 +1,5 @@
 const Telegraf = require('telegraf')
-
+const getJSON = require('get-json')
 const bot = new Telegraf('5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM')
 
 const helpMessage = `\n/start - start bot\n/menu - list menu`;
@@ -40,12 +40,10 @@ bot.command('delete', async (ctx) => {
     }
 })
 bot.hears('Test', (ctx) => {
-    const res = fetch(
-   // "https://api.themoviedb.org/3/movie/now_playing?api_key=680c99274ddab12ffac27271d9445d45&language=en&page=2"
-   "https://api.themoviedb.org/3/search/movie?query=hugas&api_key=680c99274ddab12ffac27271d9445d45"
-  );
-  const data = res.json();
-   console.log(data);
+    
+getJSON('https://api.themoviedb.org/3/search/movie?query=hugas&api_key=680c99274ddab12ffac27271d9445d45', function(error, response){
+    console.log(response);
+})
 })
 
 bot.hears('/', (ctx) => {
