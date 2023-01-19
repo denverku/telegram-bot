@@ -40,13 +40,12 @@ bot.command('delete', async (ctx) => {
     }
 })
 bot.hears('Test', (ctx) => {
-    axios.get('https://www.tweetgoph.ml/')
-    .then(res => {
-         console.log(res.data);
-         ctx.reply("Judul : "+JSON.stringify(res.data))
-   }).catch(e => {
-         console.log(e);
-   })
+    const res = await fetch(
+   // "https://api.themoviedb.org/3/movie/now_playing?api_key=680c99274ddab12ffac27271d9445d45&language=en&page=2"
+   "https://api.themoviedb.org/3/search/movie?query=hugas&api_key=680c99274ddab12ffac27271d9445d45"
+  );
+  const data = await res.json();
+   console.log(data);
 })
 
 bot.hears('/', (ctx) => {
