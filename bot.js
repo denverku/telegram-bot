@@ -1,6 +1,8 @@
 const Telegraf = require('telegraf')
 const getJSON = require('get-json')
 const https = require('https');
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 
 const bot = new Telegraf('5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM')
 
@@ -46,8 +48,9 @@ bot.hears('Ge', (ctx) => {
     console.log(res.statusCode);
     res.setEncoding('utf8');
     res.on('data', function(data) {
-        
-        ctx.reply(data);
+        const dom = new JSDOM(data);
+        console.log(dom.window.document.querySelector("p").textContent); 
+        ctx.reply(dom.window.document.querySelector("p").textContent);
     });
 }).on('error', function(err) {
     console.log(err);
