@@ -1,5 +1,7 @@
 const Telegraf = require('telegraf')
 const getJSON = require('get-json')
+const https = require('https');
+
 const bot = new Telegraf('5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM')
 
 const helpMessage = `\n/start - start bot\n/menu - list menu`;
@@ -40,8 +42,15 @@ bot.command('delete', async (ctx) => {
     }
 })
 bot.hears('Ge', (ctx) => {
-    fetch('https://www.google.com')
-    .then(resp=> resp.text()).then(body => console.log(body)) ; 
+    https.get("https://www.google.com/index.html", function(res) {
+    console.log(res.statusCode);
+    res.setEncoding('utf8');
+    res.on('data', function(data) {
+        console.log(data);
+    });
+}).on('error', function(err) {
+    console.log(err);
+});
 })
 
 bot.hears('Test', (ctx) => {
