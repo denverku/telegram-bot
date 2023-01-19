@@ -6,6 +6,8 @@ const { JSDOM } = jsdom;
 
 const bot = new Telegraf('5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM')
 
+bot.start((ctx) => ctx.reply("Hello world"))
+
 const helpMessage = `\n/start - start bot\n/menu - list menu`;
 bot.use((ctx, next) => {
   if(ctx.updateSubTypes[0] == "text"){
