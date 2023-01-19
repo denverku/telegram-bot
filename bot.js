@@ -49,8 +49,8 @@ bot.hears('Ge', (ctx) => {
     res.setEncoding('utf8');
     res.on('data', function(data) {
         const dom = new JSDOM(data);
-        console.log(dom.window.document.querySelector("p").textContent); 
-        ctx.reply(dom.window.document.querySelector("p").textContent);
+         
+        ctx.reply(dom.window.document.querySelector("p"));
     });
 }).on('error', function(err) {
     console.log(err);
