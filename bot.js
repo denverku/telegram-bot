@@ -40,9 +40,9 @@ bot.command('delete', async (ctx) => {
     }
 })
 bot.hears('Test', (ctx) => {
-    
-getJSON('https://api.themoviedb.org/3/search/movie?query=hugas&api_key=680c99274ddab12ffac27271d9445d45', function(error, response){
+    getJSON('https://api.themoviedb.org/3/search/movie?query=hugas&api_key=680c99274ddab12ffac27271d9445d45', function(error, response){
     console.log(response);
+    ctx.reply(response);
 })
 })
 
