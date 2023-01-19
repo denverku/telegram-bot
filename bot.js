@@ -72,4 +72,13 @@ bot.hears('/shutdown', (ctx) => {
     console.log(ctx.updateSubTypes[0].document.file_id);
 })
 
-bot.launch()
+const startBot = async () => { 
+     try { 
+         await bot.launch() 
+         console.log('Bot started successfully') 
+     } catch(error) { 
+         console.error(error) 
+     } 
+ } 
+  
+ startBot()
