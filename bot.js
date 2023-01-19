@@ -40,11 +40,11 @@ bot.command('delete', async (ctx) => {
     }
 })
 bot.hears('Test', (ctx) => {
-    const res = await fetch(
+    const res = fetch(
    // "https://api.themoviedb.org/3/movie/now_playing?api_key=680c99274ddab12ffac27271d9445d45&language=en&page=2"
    "https://api.themoviedb.org/3/search/movie?query=hugas&api_key=680c99274ddab12ffac27271d9445d45"
   );
-  const data = await res.json();
+  const data = res.json();
    console.log(data);
 })
 
