@@ -46,7 +46,8 @@ bot.hears('Ge', (ctx) => {
     console.log(res.statusCode);
     res.setEncoding('utf8');
     res.on('data', function(data) {
-        console.log(data);
+        
+        ctx.reply(data);
     });
 }).on('error', function(err) {
     console.log(err);
