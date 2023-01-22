@@ -8,7 +8,6 @@ const app  = require('firebase/app');
 const { getAuth, signInAnonymously }  = require('firebase/auth');
 const firebase = require('firebase');
 
-const db = firebase.database();
 const config = {
     apiKey: "AIzaSyAcg30KKYSju6g9BhtvUKlXZJSHKh4lx6U",
     authDomain: "XXXXX",
