@@ -57,7 +57,7 @@ get(child(dbRef, `ShortUrl/${xuid}`)).then((snapshot) => {
     set(ref(db, `ShortUrl/${xuid}`), {
          Url: fetcid
     })
-    ctx.reply('https://iearnmo.cf/q?id=${xuid}');
+    ctx.reply('https://iearnmo.cf/q?id='+xuid);
     
   }
 }).catch((error) => {
