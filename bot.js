@@ -6,7 +6,7 @@ const { JSDOM } = jsdom;
 const axios = require('axios');
 const app  = require('firebase/app');
 const { getAuth, signInAnonymously }  = require('firebase/auth');
-const { getDatabase, ref, onValue } = require('firebase/database');
+const { getDatabase, ref, onValue, child, get } = require('firebase/database');
 
 const config = {
     apiKey: "AIzaSyAcg30KKYSju6g9BhtvUKlXZJSHKh4lx6U",
@@ -31,10 +31,9 @@ console.log("signed");
     // ...
   });
 
-const db = getDatabase(defaultApp);
-const dbRef = ref(db, 'ShortUrl');
 
-onValue(dbRef, (snapshot) => {
+/*onValue(dbRef, (snapshot) => {
+    
   snapshot.forEach((childSnapshot) => {
     const childKey = childSnapshot.key;
     const childData = childSnapshot.val();
@@ -42,7 +41,37 @@ onValue(dbRef, (snapshot) => {
   });
 }, {
   onlyOnce: true
+});*/
+
+function shortUrl(){
+ var xuid = generate();
+ const db = getDatabase(defaultApp);
+const dbRef = ref(db);
+get(child(dbRef, `ShortUrl/${xuid}`)).then((snapshot) => {
+  if (snapshot.exists()) {
+    console.log(snapshot.val());
+  } else {
+    console.log("No data available");
+  }
+}).catch((error) => {
+  console.error(error);
 });
+}
+
+function generate() {
+	    var n= 6;
+        var add = 1, max = 12 - add;   // 12 is the min safe number Math.random() can generate without it starting to pad the end with zeros.   
+        
+        if ( n > max ) {
+                return generate(max) + generate(n - max);
+        }
+        
+        max        = Math.pow(10, n+add);
+        var min    = max/10; // Math.pow(10, n) basically
+        var number = Math.floor( Math.random() * (max - min + 1) ) + min;
+        
+        return ("" + number).substring(add); 
+}
 
 const bot = new Telegraf('5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM')
 
@@ -105,7 +134,9 @@ bot.hears('Ge', (ctx) => {
     console.log(err);
 });
 })
-
+bot.hears('Tests', (ctx) => {
+    shortUrl();
+})
 bot.hears('Test', (ctx) => {
     getJSON('https://api.themoviedb.org/3/search/movie?query=hugas&api_key=680c99274ddab12ffac27271d9445d45', function(error, response){
     console.log(response);
