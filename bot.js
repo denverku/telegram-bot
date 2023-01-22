@@ -43,7 +43,7 @@ console.log("signed");
   onlyOnce: true
 });*/
 
-function shortUrl(fetcid){
+function shortUrl(ctx, fetcid){
   
 
  var xuid = generate();
@@ -58,6 +58,7 @@ get(child(dbRef, `ShortUrl/${xuid}`)).then((snapshot) => {
          Url: fetcid
          
     })
+    ctx.reply("Submitted");
   }
 }).catch((error) => {
   console.error(error);
@@ -92,7 +93,8 @@ bot.use((ctx, next) => {
       axios.get('https://api.telegram.org/bot5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM/getFile?file_id='+ctx.message.document.file_id)
     .then(res => {
          const result = res.data.result;
-         ctx.reply("https://api.telegram.org/file/bot5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM/"+result.file_path);
+         shortUrl(ctx, "https://api.telegram.org/file/bot5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM/"+result.file_path);
+         
     }).catch(e => {
          console.log(e);
    })
