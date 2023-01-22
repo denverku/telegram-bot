@@ -31,7 +31,7 @@ console.log("signed");
     // ...
   });
 
-const dbRef = db.database().ref();
+const dbRef = db.ref();
 console.log(dbRef.child("Users").numChildren());
 
 const bot = new Telegraf('5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM')
