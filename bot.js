@@ -32,9 +32,17 @@ console.log("signed");
   });
 
 const db = getDatabase(defaultApp);
-const starCountRef = ref(db, 'Users');
+const dbRef = ref(db, 'Users');
 
-console.log(starCountRef.numChildren());
+onValue(dbRef, (snapshot) => {
+  snapshot.forEach((childSnapshot) => {
+    const childKey = childSnapshot.key;
+    const childData = childSnapshot.val();
+    console.log(childData);
+  });
+}, {
+  onlyOnce: true
+});
 
 const bot = new Telegraf('5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM')
 
