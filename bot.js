@@ -15,8 +15,8 @@ bot.use((ctx, next) => {
   }else if(ctx.updateSubTypes[0] == "document"){
       console.log(ctx.message.document.file_id);
       getJSON('https://api.telegram.org/bot5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM/getFile?file_id='+ctx.message.document.file_id, function(error, response){
-          /*const obj = JSON.parse(response);
-          ctx.reply(obj.result);*/
+          const obj = JSON.parse(response);
+          /*ctx.reply(obj.result);*/
           console.log(response);
       })
   }else{
