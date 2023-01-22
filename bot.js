@@ -4,7 +4,7 @@ const https = require('https');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const axios = require('axios');
-const { app } = require('firebase/app');
+const app  = require('firebase/app');
 
 const config = {
     apiKey: "AIzaSyAcg30KKYSju6g9BhtvUKlXZJSHKh4lx6U",
