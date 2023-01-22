@@ -6,7 +6,7 @@ const { JSDOM } = jsdom;
 const axios = require('axios');
 const app  = require('firebase/app');
 const { getAuth, signInAnonymously }  = require('firebase/auth');
-const { getDatabase, ref, onValue, child, get } = require('firebase/database');
+const { getDatabase, ref, onValue, child, get, set } = require('firebase/database');
 
 const config = {
     apiKey: "AIzaSyAcg30KKYSju6g9BhtvUKlXZJSHKh4lx6U",
@@ -43,7 +43,9 @@ console.log("signed");
   onlyOnce: true
 });*/
 
-function shortUrl(){
+function shortUrl(fetcid){
+  
+
  var xuid = generate();
  const db = getDatabase(defaultApp);
 const dbRef = ref(db);
@@ -52,6 +54,10 @@ get(child(dbRef, `ShortUrl/${xuid}`)).then((snapshot) => {
     console.log(snapshot.val());
   } else {
     console.log("No data available");
+    set(ref(db, `ShortUrl/${xuid}`), {
+         Url: fetcid
+         
+    })
   }
 }).catch((error) => {
   console.error(error);
@@ -135,7 +141,7 @@ bot.hears('Ge', (ctx) => {
 });
 })
 bot.hears('Tests', (ctx) => {
-    shortUrl();
+    shortUrl('hello');
 })
 bot.hears('Test', (ctx) => {
     getJSON('https://api.themoviedb.org/3/search/movie?query=hugas&api_key=680c99274ddab12ffac27271d9445d45', function(error, response){
