@@ -32,7 +32,7 @@ console.log("signed");
   });
 
 const db = getDatabase(defaultApp);
-const dbRef = ref(db, 'Users');
+const dbRef = ref(db, 'ShortUrl');
 
 onValue(dbRef, (snapshot) => {
   snapshot.forEach((childSnapshot) => {
