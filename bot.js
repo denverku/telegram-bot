@@ -6,7 +6,7 @@ const { JSDOM } = jsdom;
 const axios = require('axios');
 const app  = require('firebase/app');
 const { getAuth, signInAnonymously }  = require('firebase/auth');
-const firebase = require('firebase/database');
+const db = require('firebase/database');
 
 const config = {
     apiKey: "AIzaSyAcg30KKYSju6g9BhtvUKlXZJSHKh4lx6U",
@@ -31,6 +31,8 @@ console.log("signed");
     // ...
   });
 
+const dbRef = db.database().ref();
+console.log(dbRef.child("Users").numChildren());
 
 const bot = new Telegraf('5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM')
 
