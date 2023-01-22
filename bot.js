@@ -44,21 +44,21 @@ console.log("signed");
 });*/
 
 function shortUrl(ctx, fetcid){
-  
-
+ 
  var xuid = generate();
  const db = getDatabase(defaultApp);
 const dbRef = ref(db);
 get(child(dbRef, `ShortUrl/${xuid}`)).then((snapshot) => {
   if (snapshot.exists()) {
     console.log(snapshot.val());
+     ctx.reply("Try Again!");
   } else {
     console.log("No data available");
     set(ref(db, `ShortUrl/${xuid}`), {
          Url: fetcid
-         
     })
-    ctx.reply("Submitted");
+    ctx.reply('https://iearnmo.cf/q?id=${xuid}');
+    
   }
 }).catch((error) => {
   console.error(error);
