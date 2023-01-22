@@ -5,7 +5,7 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const axios = require('axios');
 const app  = require('firebase/app');
-
+const auth  = require('firebase/auth');
 const config = {
     apiKey: "AIzaSyAcg30KKYSju6g9BhtvUKlXZJSHKh4lx6U",
     authDomain: "XXXXX",
@@ -17,7 +17,7 @@ const config = {
 
 var defaultApp = app.initializeApp(config);
 console.log(defaultApp.name);
-app.auth().signInWithEmailAndPassword("magicph26@gmail.com", "trunks123");
+auth.auth().signInWithEmailAndPassword("magicph26@gmail.com", "trunks123");
 
 
 const bot = new Telegraf('5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM')
