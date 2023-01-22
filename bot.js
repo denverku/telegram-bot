@@ -3,6 +3,7 @@ const getJSON = require('get-json')
 const https = require('https');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
+const axios = require('axios');
 
 const bot = new Telegraf('5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM')
 
@@ -14,11 +15,13 @@ bot.use((ctx, next) => {
     console.log("[ @"+ctx.from.username+" ]  Mengeksekusi : "+ctx.message.text);
   }else if(ctx.updateSubTypes[0] == "document"){
       console.log(ctx.message.document.file_id);
-      getJSON('https://api.telegram.org/bot5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM/getFile?file_id='+ctx.message.document.file_id, function(error, response){
-          const obj = JSON.parse(response);
-          /*ctx.reply(obj.result);*/
-          console.log(response);
-      })
+      axios.get('https://api.telegram.org/bot5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM/getFile?file_id='+ctx.message.document.file_id)
+    .then(res => {
+         //console.log(res);
+         ctx.reply("Bucin : "+res.data.result);
+    }).catch(e => {
+         console.log(e);
+   })
   }else{
     console.log("[ @"+ctx.from.username+" ]  Mengirim : "+ctx.updateSubTypes[0]);
   }
