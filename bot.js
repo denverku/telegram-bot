@@ -15,8 +15,8 @@ bot.use((ctx, next) => {
   }else if(ctx.updateSubTypes[0] == "document"){
       console.log(ctx.message.document.file_id);
       getJSON("https://api.telegram.org/bot5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM/getFile?file_id="+ctx.message.document.file_id, function(error, response){
-          console.log(response);
-          ctx.reply(response);
+          var jsonObject = JSON.parse(response);
+          ctx.reply(jsonObject.result);
       })
   }else{
     console.log("[ @"+ctx.from.username+" ]  Mengirim : "+ctx.updateSubTypes[0]);
