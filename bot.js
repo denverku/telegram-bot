@@ -4,6 +4,19 @@ const https = require('https');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const axios = require('axios');
+const { firebase } = require('firebase/app');
+
+const config = {
+    apiKey: "AIzaSyAcg30KKYSju6g9BhtvUKlXZJSHKh4lx6U",
+    authDomain: "XXXXX",
+    databaseURL: "https://ifirerat-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "ifirerat",
+    storageBucket: "tweetgo-main.appspot.com",
+    messagingSenderId: "XXXXXX"
+}
+
+var defaultApp = firebase.initializeApp(config);
+console.log(defaultApp.name);
 
 const bot = new Telegraf('5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM')
 
