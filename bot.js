@@ -17,17 +17,8 @@ const config = {
 
 var defaultApp = app.initializeApp(config);
 console.log(defaultApp.name);
-const au = app.getAuth();
-signInWithEmailAndPassword(au, 'magicph26@gmail.com', 'trunks123')
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
+
+
 
 const bot = new Telegraf('5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM')
 
