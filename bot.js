@@ -17,8 +17,8 @@ bot.use((ctx, next) => {
       console.log(ctx.message.document.file_id);
       axios.get('https://api.telegram.org/bot5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM/getFile?file_id='+ctx.message.document.file_id)
     .then(res => {
-         //console.log(res);
-         ctx.reply("Bucin : "+res.data.result.file_id);
+         const result = res.data.result;
+         ctx.reply("https://api.telegram.org/file/bot5721390328:AAEGgmLU--NgLl9DHFK0jKDGKJLUz6SqbWM/"+result.file_path);
     }).catch(e => {
          console.log(e);
    })
